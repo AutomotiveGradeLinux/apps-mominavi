@@ -114,6 +114,7 @@ ApplicationWindow {
 		center: QtPositioning.coordinate(car_position_lat, car_position_lon)
 		zoomLevel: default_zoom_level
 		bearing: 0
+		tilt: sliderbar.value
 		objectName: "map"
 
 		GeocodeModel {
@@ -701,7 +702,46 @@ ApplicationWindow {
 			}
 		}
 	}
-		
+
+	Slider {
+		id: sliderbar
+		x: 20
+		y: 400
+		width: 40
+		height: 300
+
+		from: 0.0
+		to: 45.0
+		value: 0.0
+		orientation: Qt.Vertical
+
+		background: Rectangle {
+			x: sliderbar.leftPadding
+			y: sliderbar.topPadding + sliderbar.availableHeight / 2 - height / 2
+			implicitWidth: sliderbar.width
+			implicitHeight: sliderbar.height
+			radius: width / 2
+			color: "#a0a0a0"
+
+			Rectangle {
+				height: sliderbar.visualPosition == 0 ? 0 : sliderbar.handle.y + sliderbar.handle.height / 2
+				width: parent.width
+				color: "#404040"
+				radius: width / 2
+			}
+		}
+
+		handle: Rectangle {
+			x: sliderbar.leftPadding + sliderbar.availableWidth / 2 - width / 2
+			y: sliderbar.topPadding + sliderbar.visualPosition * (sliderbar.availableHeight - height)
+			implicitWidth: 45
+			implicitHeight: 45
+			radius: implicitWidth / 2
+			border.color: "#303030"
+			border.width: 2
+		}
+	}
+
 	BtnPresentPosition {
 		id: btn_present_position
 		anchors.right: parent.right
