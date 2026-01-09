@@ -23,6 +23,7 @@ void MomiConfig::loadConfig()
     m_start_latitude = 36.136261; // set default coordinate Westgate
     m_start_longitude = -115.151254;
     m_style = QString("https://tile.openstreetmap.jp/styles/openmaptiles/style.json");
+    m_map_copyright = QString("MapLibre | © OpenMapTiles © OpenStreetMap contributors");
 
     QString StrEnvLat = qgetenv("MOMIMAP_INITIAL_LATITUDE");
     if (StrEnvLat.size() > 0) {
@@ -55,7 +56,11 @@ void MomiConfig::loadConfig()
 
     QString StrEnvStyle = qgetenv("MOMIMAP_MAPLIBRE_STYLE");
     if (StrEnvStyle.size() > 0) {
-        m_style = StrEnvStyle;
+       QString StrMapCpy = qgetenv("MOMIMAP_MAP_COPYRIGHT");
+        if (StrMapCpy.size() > 0) {
+            m_style = StrEnvStyle;
+            m_map_copyright = StrMapCpy;
+        }
     }
 
     return;
@@ -84,4 +89,9 @@ double MomiConfig::getStartLongitude()
 QString MomiConfig::getMaplibreStyle()
 {
     return m_style;
+}
+
+QString File_Operation::getMapCopyright()
+{
+    return m_map_copyright;
 }

@@ -15,6 +15,7 @@ class MomiConfig: public QObject{
     double m_start_latitude;
     double m_start_longitude;
     QString m_style;
+    QString m_map_copyright;
 
 public:
     MomiConfig();
@@ -25,6 +26,7 @@ public:
     Q_INVOKABLE double getStartLatitude();
     Q_INVOKABLE double getStartLongitude();
     Q_INVOKABLE QString getMaplibreStyle();
+    Q_INVOKABLE QString getMapCopyright();
 
 private:
     void loadConfig();
