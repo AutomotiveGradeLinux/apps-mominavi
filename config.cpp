@@ -91,7 +91,7 @@ QString MomiConfig::getMaplibreStyle()
     return m_style;
 }
 
-QString File_Operation::getMapCopyright()
+QString MomiConfig::getMapCopyright()
 {
     return m_map_copyright;
 }
